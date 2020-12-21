@@ -1,20 +1,31 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-void min_abs_elem(int* arr, int len) {
-	int i , min_chislo, result, chislo_i;
-	min_chislo = arr[0] >= 0 ? arr[0] : arr[0] * (-1);
-	for (i = 0; i <= 10; i++) {
-		chislo_i = arr[i] >= 0 ? arr[i] : arr[i] * (-1);
-		if (chislo_i <= min_chislo) {
-			result = arr[i];
-			min_chislo = chislo_i;
+void max_popular(int*arr , int len ) {
+	int result, max, i, j, povtpor;
+	result = arr[0];
+	max = 1;
+	for (i = 0; i < 10; i++) {
+		povtpor = 1;
+		for (j = i + 1; j < 10; j++) {
+			if (arr[i] == arr[j]) {
+				povtpor++;
+			}
+			if (povtpor > max) {
+				max = povtpor;
+				result = arr[i];
+			}
 		}
 	}
-	printf("otvet raven %d\n", result);
+	if (max > 1) {
+		printf("%d raz vsrtechaetsa chislo %d", max, result);
+	}
+	else {
+		printf("Net povtora\n");
+	}
 }
 int main() {
 	int arr[10];
-	int i = 0;
+	int result, i=0;
 	printf("Input ten numbers:\n");
 	while (i < 10)
 	{
@@ -25,6 +36,6 @@ int main() {
 		}
 		i++;
 	}
-	min_abs_elem(arr, 10);
+	max_popular(arr, 10);
 	return 0;
 }
